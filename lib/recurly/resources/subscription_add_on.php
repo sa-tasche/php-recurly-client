@@ -27,6 +27,7 @@ class SubscriptionAddOn extends RecurlyResource
     private $_unit_amount;
     private $_unit_amount_decimal;
     private $_updated_at;
+    private $_usage_calculation_type;
     private $_usage_percentage;
     private $_usage_timeframe;
 
@@ -182,8 +183,8 @@ the associated add-on data will be pulled from the site's item catalog.
     * Getter method for the percentage_tiers attribute.
     * If percentage tiers are provided in the request, all existing percentage tiers on the Subscription Add-on will be
 removed and replaced by the percentage tiers in the request. Use only if add_on.tier_type is tiered or volume and
-add_on.usage_type is percentage.
-There must be one tier without an `ending_amount` value which represents the final tier.
+add_on.usage_type is percentage. There must be one tier without an `ending_amount` value which represents the final tier.
+This feature is currently in development and requires approval and enablement, please contact support.
 
     *
     * @return array
@@ -278,7 +279,7 @@ There must be one tier without an `ending_amount` value which represents the fin
     * Getter method for the tier_type attribute.
     * The pricing model for the add-on.  For more information,
 [click here](https://docs.recurly.com/docs/billing-models#section-quantity-based). See our
-[Guide](https://developers.recurly.com/guides/item-addon-guide.html) for an overview of how
+[Guide](https://recurly.com/developers/guides/item-addon-guide.html) for an overview of how
 to configure quantity-based pricing models.
 
     *
@@ -395,6 +396,29 @@ There must be one tier without an `ending_quantity` value which represents the f
     public function setUpdatedAt(string $updated_at): void
     {
         $this->_updated_at = $updated_at;
+    }
+
+    /**
+    * Getter method for the usage_calculation_type attribute.
+    * The type of calculation to be employed for an add-on.  Cumulative billing will sum all usage records created in the current billing cycle.  Last-in-period billing will apply only the most recent usage record in the billing period.  If no value is specified, cumulative billing will be used.
+    *
+    * @return ?string
+    */
+    public function getUsageCalculationType(): ?string
+    {
+        return $this->_usage_calculation_type;
+    }
+
+    /**
+    * Setter method for the usage_calculation_type attribute.
+    *
+    * @param string $usage_calculation_type
+    *
+    * @return void
+    */
+    public function setUsageCalculationType(string $usage_calculation_type): void
+    {
+        $this->_usage_calculation_type = $usage_calculation_type;
     }
 
     /**

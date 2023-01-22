@@ -427,7 +427,7 @@ class Client extends BaseClient
     }
   
     /**
-     * Show the coupon redemptions for an account
+     * List the coupon redemptions for an account
      *
      * @param string $account_id Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
      * @param array  $options    Associative array of optional parameters
@@ -464,7 +464,7 @@ class Client extends BaseClient
     }
   
     /**
-     * Show the coupon redemptions that are active on an account
+     * List the coupon redemptions that are active on an account
      *
      * @param string $account_id Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
      * @param array  $options    Associative array of optional parameters
@@ -669,7 +669,7 @@ class Client extends BaseClient
     }
   
     /**
-     * Fetch a list of an account's notes
+     * List an account's notes
      *
      * @param string $account_id Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
      * @param array  $options    Associative array of optional parameters
@@ -1498,6 +1498,76 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     }
   
     /**
+     * List a site's external products
+     *
+     * @param array $options Associative array of optional parameters
+     *
+     * Supported optional query string parameters:
+     *
+     * - $options['params']['sort'] (string): Sort field. You *really* only want to sort by `updated_at` in ascending
+     *        order. In descending order updated records will move behind the cursor and could
+     *        prevent some records from being returned.
+     *
+     * @return \Recurly\Pager A list of the the external_products on a site.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/list_external_products
+     */
+    public function listExternalProducts(array $options = []): \Recurly\Pager
+    {
+        $path = $this->interpolatePath("/external_products", []);
+        return new \Recurly\Pager($this, $path, $options);
+    }
+  
+    /**
+     * Fetch an external product
+     *
+     * @param string $external_product_id External product id
+     * @param array  $options             Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\ExternalProduct Settings for an external product.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/get_external_product
+     */
+    public function getExternalProduct(string $external_product_id, array $options = []): \Recurly\Resources\ExternalProduct
+    {
+        $path = $this->interpolatePath("/external_products/{external_product_id}", ['external_product_id' => $external_product_id]);
+        return $this->makeRequest('GET', $path, [], $options);
+    }
+  
+    /**
+     * List a site's external subscriptions
+     *
+     * @param array $options Associative array of optional parameters
+     *
+     * Supported optional query string parameters:
+     *
+     * - $options['params']['sort'] (string): Sort field. You *really* only want to sort by `updated_at` in ascending
+     *        order. In descending order updated records will move behind the cursor and could
+     *        prevent some records from being returned.
+     *
+     * @return \Recurly\Pager A list of the the external_subscriptions on a site.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/list_external_subscriptions
+     */
+    public function listExternalSubscriptions(array $options = []): \Recurly\Pager
+    {
+        $path = $this->interpolatePath("/external_subscriptions", []);
+        return new \Recurly\Pager($this, $path, $options);
+    }
+  
+    /**
+     * Fetch an external subscription
+     *
+     * @param string $external_subscription_id External subscription id
+     * @param array  $options                  Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\ExternalSubscription Settings for an external subscription.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/get_external_subscription
+     */
+    public function getExternalSubscription(string $external_subscription_id, array $options = []): \Recurly\Resources\ExternalSubscription
+    {
+        $path = $this->interpolatePath("/external_subscriptions/{external_subscription_id}", ['external_subscription_id' => $external_subscription_id]);
+        return $this->makeRequest('GET', $path, [], $options);
+    }
+  
+    /**
      * List a site's invoices
      *
      * @param array $options Associative array of optional parameters
@@ -1583,6 +1653,21 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     {
         $path = $this->interpolatePath("/invoices/{invoice_id}.pdf", ['invoice_id' => $invoice_id]);
         return $this->makeRequest('GET', $path, [], $options);
+    }
+  
+    /**
+     * Apply available credit to a pending or past due charge invoice
+     *
+     * @param string $invoice_id Invoice ID or number. For ID no prefix is used e.g. `e28zov4fw0v2`. For number use prefix `number-`, e.g. `number-1000`.
+     * @param array  $options    Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\Invoice The updated invoice.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/apply_credit_balance
+     */
+    public function applyCreditBalance(string $invoice_id, array $options = []): \Recurly\Resources\Invoice
+    {
+        $path = $this->interpolatePath("/invoices/{invoice_id}/apply_credit_balance", ['invoice_id' => $invoice_id]);
+        return $this->makeRequest('PUT', $path, [], $options);
     }
   
     /**
@@ -1719,7 +1804,7 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     }
   
     /**
-     * Show the coupon redemptions applied to an invoice
+     * List the coupon redemptions applied to an invoice
      *
      * @param string $invoice_id Invoice ID or number. For ID no prefix is used e.g. `e28zov4fw0v2`. For number use prefix `number-`, e.g. `number-1000`.
      * @param array  $options    Associative array of optional parameters
@@ -2564,7 +2649,7 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     }
   
     /**
-     * Show the coupon redemptions for a subscription
+     * List the coupon redemptions for a subscription
      *
      * @param string $subscription_id Subscription ID or UUID. For ID no prefix is used e.g. `e28zov4fw0v2`. For UUID use prefix `uuid-`, e.g. `uuid-123457890`.
      * @param array  $options         Associative array of optional parameters
@@ -2876,7 +2961,7 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     }
   
     /**
-     * Show the dunning campaigns for a site
+     * List the dunning campaigns for a site
      *
      * @param array $options Associative array of optional parameters
      *
@@ -2896,7 +2981,7 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     }
   
     /**
-     * Show the settings for a dunning campaign
+     * Fetch a dunning campaign
      *
      * @param string $dunning_campaign_id Dunning Campaign ID, e.g. `e28zov4fw0v2`.
      * @param array  $options             Associative array of optional parameters
@@ -2947,7 +3032,7 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     }
   
     /**
-     * Show the settings for an invoice template
+     * Fetch an invoice template
      *
      * @param string $invoice_template_id Invoice template ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
      * @param array  $options             Associative array of optional parameters
@@ -2962,7 +3047,7 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     }
   
     /**
-     * Show all entitlements granted to an account
+     * List entitlements granted to an account
      *
      * @param string $account_id Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
      * @param array  $options    Associative array of optional parameters
@@ -2980,6 +3065,27 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     public function listEntitlements(string $account_id, array $options = []): \Recurly\Pager
     {
         $path = $this->interpolatePath("/accounts/{account_id}/entitlements", ['account_id' => $account_id]);
+        return new \Recurly\Pager($this, $path, $options);
+    }
+  
+    /**
+     * List an account's external subscriptions
+     *
+     * @param string $account_id Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
+     * @param array  $options    Associative array of optional parameters
+     *
+     * Supported optional query string parameters:
+     *
+     * - $options['params']['sort'] (string): Sort field. You *really* only want to sort by `updated_at` in ascending
+     *        order. In descending order updated records will move behind the cursor and could
+     *        prevent some records from being returned.
+     *
+     * @return \Recurly\Pager A list of the the external_subscriptions on an account.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/list_account_external_subscriptions
+     */
+    public function listAccountExternalSubscriptions(string $account_id, array $options = []): \Recurly\Pager
+    {
+        $path = $this->interpolatePath("/accounts/{account_id}/external_subscriptions", ['account_id' => $account_id]);
         return new \Recurly\Pager($this, $path, $options);
     }
   

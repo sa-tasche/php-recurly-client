@@ -199,7 +199,7 @@ class Usage extends RecurlyResource
 
     /**
     * Getter method for the percentage_tiers attribute.
-    * The percentage tiers of the subscription based on the usage_timestamp. If tier_type = flat, percentage_tiers = []
+    * The percentage tiers of the subscription based on the usage_timestamp. If tier_type = flat, percentage_tiers = []. This feature is currently in development and requires approval and enablement, please contact support.
     *
     * @return array
     */
@@ -247,7 +247,7 @@ class Usage extends RecurlyResource
     * Getter method for the tier_type attribute.
     * The pricing model for the add-on.  For more information,
 [click here](https://docs.recurly.com/docs/billing-models#section-quantity-based). See our
-[Guide](https://developers.recurly.com/guides/item-addon-guide.html) for an overview of how
+[Guide](https://recurly.com/developers/guides/item-addon-guide.html) for an overview of how
 to configure quantity-based pricing models.
 
     *
