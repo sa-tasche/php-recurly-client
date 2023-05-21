@@ -10,21 +10,17 @@ namespace Recurly\Resources;
 use Recurly\RecurlyResource;
 
 // phpcs:disable
-class ExternalSubscription extends RecurlyResource
+class ExternalCharge extends RecurlyResource
 {
     private $_account;
-    private $_activated_at;
-    private $_app_identifier;
-    private $_auto_renew;
     private $_created_at;
-    private $_expires_at;
-    private $_external_id;
+    private $_currency;
+    private $_description;
     private $_external_product_reference;
     private $_id;
-    private $_last_purchased;
     private $_object;
     private $_quantity;
-    private $_state;
+    private $_unit_amount;
     private $_updated_at;
 
     protected static $array_hints = [
@@ -55,77 +51,8 @@ class ExternalSubscription extends RecurlyResource
     }
 
     /**
-    * Getter method for the activated_at attribute.
-    * When the external subscription was activated in the external platform.
-    *
-    * @return ?string
-    */
-    public function getActivatedAt(): ?string
-    {
-        return $this->_activated_at;
-    }
-
-    /**
-    * Setter method for the activated_at attribute.
-    *
-    * @param string $activated_at
-    *
-    * @return void
-    */
-    public function setActivatedAt(string $activated_at): void
-    {
-        $this->_activated_at = $activated_at;
-    }
-
-    /**
-    * Getter method for the app_identifier attribute.
-    * Identifier of the app that generated the external subscription.
-    *
-    * @return ?string
-    */
-    public function getAppIdentifier(): ?string
-    {
-        return $this->_app_identifier;
-    }
-
-    /**
-    * Setter method for the app_identifier attribute.
-    *
-    * @param string $app_identifier
-    *
-    * @return void
-    */
-    public function setAppIdentifier(string $app_identifier): void
-    {
-        $this->_app_identifier = $app_identifier;
-    }
-
-    /**
-    * Getter method for the auto_renew attribute.
-    * An indication of whether or not the external subscription will auto-renew at the expiration date.
-    *
-    * @return ?bool
-    */
-    public function getAutoRenew(): ?bool
-    {
-        return $this->_auto_renew;
-    }
-
-    /**
-    * Setter method for the auto_renew attribute.
-    *
-    * @param bool $auto_renew
-    *
-    * @return void
-    */
-    public function setAutoRenew(bool $auto_renew): void
-    {
-        $this->_auto_renew = $auto_renew;
-    }
-
-    /**
     * Getter method for the created_at attribute.
-    * When the external subscription was created in Recurly.
+    * When the external charge was created in Recurly.
     *
     * @return ?string
     */
@@ -147,49 +74,49 @@ class ExternalSubscription extends RecurlyResource
     }
 
     /**
-    * Getter method for the expires_at attribute.
-    * When the external subscription expires in the external platform.
+    * Getter method for the currency attribute.
+    * 3-letter ISO 4217 currency code.
     *
     * @return ?string
     */
-    public function getExpiresAt(): ?string
+    public function getCurrency(): ?string
     {
-        return $this->_expires_at;
+        return $this->_currency;
     }
 
     /**
-    * Setter method for the expires_at attribute.
+    * Setter method for the currency attribute.
     *
-    * @param string $expires_at
+    * @param string $currency
     *
     * @return void
     */
-    public function setExpiresAt(string $expires_at): void
+    public function setCurrency(string $currency): void
     {
-        $this->_expires_at = $expires_at;
+        $this->_currency = $currency;
     }
 
     /**
-    * Getter method for the external_id attribute.
-    * The id of the subscription in the external systems., I.e. Apple App Store or Google Play Store.
+    * Getter method for the description attribute.
+    * 
     *
     * @return ?string
     */
-    public function getExternalId(): ?string
+    public function getDescription(): ?string
     {
-        return $this->_external_id;
+        return $this->_description;
     }
 
     /**
-    * Setter method for the external_id attribute.
+    * Setter method for the description attribute.
     *
-    * @param string $external_id
+    * @param string $description
     *
     * @return void
     */
-    public function setExternalId(string $external_id): void
+    public function setDescription(string $description): void
     {
-        $this->_external_id = $external_id;
+        $this->_description = $description;
     }
 
     /**
@@ -217,7 +144,7 @@ class ExternalSubscription extends RecurlyResource
 
     /**
     * Getter method for the id attribute.
-    * System-generated unique identifier for an external subscription ID, e.g. `e28zov4fw0v2`.
+    * System-generated unique identifier for an external charge ID, e.g. `e28zov4fw0v2`.
     *
     * @return ?string
     */
@@ -236,29 +163,6 @@ class ExternalSubscription extends RecurlyResource
     public function setId(string $id): void
     {
         $this->_id = $id;
-    }
-
-    /**
-    * Getter method for the last_purchased attribute.
-    * When a new billing event occurred on the external subscription in conjunction with a recent billing period, reactivation or upgrade/downgrade.
-    *
-    * @return ?string
-    */
-    public function getLastPurchased(): ?string
-    {
-        return $this->_last_purchased;
-    }
-
-    /**
-    * Setter method for the last_purchased attribute.
-    *
-    * @param string $last_purchased
-    *
-    * @return void
-    */
-    public function setLastPurchased(string $last_purchased): void
-    {
-        $this->_last_purchased = $last_purchased;
     }
 
     /**
@@ -286,7 +190,7 @@ class ExternalSubscription extends RecurlyResource
 
     /**
     * Getter method for the quantity attribute.
-    * An indication of the quantity of a subscribed item's quantity.
+    * 
     *
     * @return ?int
     */
@@ -308,31 +212,31 @@ class ExternalSubscription extends RecurlyResource
     }
 
     /**
-    * Getter method for the state attribute.
-    * External subscriptions can be active, canceled, expired, or future.
+    * Getter method for the unit_amount attribute.
+    * Unit Amount
     *
     * @return ?string
     */
-    public function getState(): ?string
+    public function getUnitAmount(): ?string
     {
-        return $this->_state;
+        return $this->_unit_amount;
     }
 
     /**
-    * Setter method for the state attribute.
+    * Setter method for the unit_amount attribute.
     *
-    * @param string $state
+    * @param string $unit_amount
     *
     * @return void
     */
-    public function setState(string $state): void
+    public function setUnitAmount(string $unit_amount): void
     {
-        $this->_state = $state;
+        $this->_unit_amount = $unit_amount;
     }
 
     /**
     * Getter method for the updated_at attribute.
-    * When the external subscription was updated in Recurly.
+    * When the external charge was updated in Recurly.
     *
     * @return ?string
     */

@@ -1,5 +1,82 @@
 # Changelog
 
+## [4.34.0](https://github.com/recurly/recurly-client-php/tree/4.34.0) (2023-05-03)
+
+[Full Changelog](https://github.com/recurly/recurly-client-php/compare/4.33.0...4.34.0)
+
+
+**Merged Pull Requests**
+
+- Generated Latest Changes for v2021-02-25 [#761](https://github.com/recurly/recurly-client-php/pull/761) ([recurly-integrations](https://github.com/recurly-integrations))
+
+
+
+## [4.33.0](https://github.com/recurly/recurly-client-php/tree/4.33.0) (2023-04-26)
+
+[Full Changelog](https://github.com/recurly/recurly-client-php/compare/4.32.0...4.33.0)
+
+
+**Merged Pull Requests**
+
+- Generated Latest Changes for v2021-02-25 (used_tax_service on Invoice) [#759](https://github.com/recurly/recurly-client-php/pull/759) ([recurly-integrations](https://github.com/recurly-integrations))
+
+
+
+## [4.32.0](https://github.com/recurly/recurly-client-php/tree/4.32.0) (2023-04-13)
+
+[Full Changelog](https://github.com/recurly/recurly-client-php/compare/4.31.0...4.32.0)
+
+
+**Merged Pull Requests**
+
+- Generated Latest Changes for v2021-02-25 (External Accounts) [#756](https://github.com/recurly/recurly-client-php/pull/756) ([recurly-integrations](https://github.com/recurly-integrations))
+
+
+
+## [4.31.0](https://github.com/recurly/recurly-client-php/tree/4.31.0) (2023-04-05)
+
+[Full Changelog](https://github.com/recurly/recurly-client-php/compare/4.30.0...4.31.0)
+
+
+**Merged Pull Requests**
+
+- Generated Latest Changes for v2021-02-25 [#753](https://github.com/recurly/recurly-client-php/pull/753) ([recurly-integrations](https://github.com/recurly-integrations))
+
+
+
+## [4.30.0](https://github.com/recurly/recurly-client-php/tree/4.30.0) (2023-03-29)
+
+[Full Changelog](https://github.com/recurly/recurly-client-php/compare/4.29.0...4.30.0)
+
+
+**Merged Pull Requests**
+
+- Generated Latest Changes for v2021-02-25 (External Invoices) [#751](https://github.com/recurly/recurly-client-php/pull/751) ([recurly-integrations](https://github.com/recurly-integrations))
+
+
+
+## [4.29.0](https://github.com/recurly/recurly-client-php/tree/4.29.0) (2023-02-22)
+
+[Full Changelog](https://github.com/recurly/recurly-client-php/compare/4.28.0...4.29.0)
+
+
+**Merged Pull Requests**
+
+- Generated Latest Changes for v2021-02-25 [#747](https://github.com/recurly/recurly-client-php/pull/747) ([recurly-integrations](https://github.com/recurly-integrations))
+
+
+
+## [4.28.0](https://github.com/recurly/recurly-client-php/tree/4.28.0) (2023-02-07)
+
+[Full Changelog](https://github.com/recurly/recurly-client-php/compare/4.27.0...4.28.0)
+
+
+**Merged Pull Requests**
+
+- Generated Latest Changes for v2021-02-25 (GiftCard endpoints and new transaction error support) [#745](https://github.com/recurly/recurly-client-php/pull/745) ([recurly-integrations](https://github.com/recurly-integrations))
+
+
+
 ## [4.27.0](https://github.com/recurly/recurly-client-php/tree/4.27.0) (2023-01-19)
 
 [Full Changelog](https://github.com/recurly/recurly-client-php/compare/4.26.0...4.27.0)

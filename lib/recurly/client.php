@@ -537,6 +537,109 @@ class Client extends BaseClient
     }
   
     /**
+     * List external accounts for an account
+     *
+     * @param string $account_id Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
+     * @param array  $options    Associative array of optional parameters
+     *
+     * @return \Recurly\Pager A list of external accounts on an account.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/list_account_external_account
+     */
+    public function listAccountExternalAccount(string $account_id, array $options = []): \Recurly\Pager
+    {
+        $path = $this->interpolatePath("/accounts/{account_id}/external_accounts", ['account_id' => $account_id]);
+        return new \Recurly\Pager($this, $path, $options);
+    }
+  
+    /**
+     * Create an external account
+     *
+     * @param string $account_id Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
+     * @param array  $body       The body of the request.
+     * @param array  $options    Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\ExternalAccount A representation of the created external_account.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/create_account_external_account
+     */
+    public function createAccountExternalAccount(string $account_id, array $body, array $options = []): \Recurly\Resources\ExternalAccount
+    {
+        $path = $this->interpolatePath("/accounts/{account_id}/external_accounts", ['account_id' => $account_id]);
+        return $this->makeRequest('POST', $path, $body, $options);
+    }
+  
+    /**
+     * Get an external account for an account
+     *
+     * @param string $account_id          Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
+     * @param string $external_account_id External account ID, e.g. `s28zov4fw0cb`.
+     * @param array  $options             Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\ExternalAccount A external account on an account.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/get_account_external_account
+     */
+    public function getAccountExternalAccount(string $account_id, string $external_account_id, array $options = []): \Recurly\Resources\ExternalAccount
+    {
+        $path = $this->interpolatePath("/accounts/{account_id}/external_accounts/{external_account_id}", ['account_id' => $account_id, 'external_account_id' => $external_account_id]);
+        return $this->makeRequest('GET', $path, [], $options);
+    }
+  
+    /**
+     * Update an external account
+     *
+     * @param string $account_id          Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
+     * @param string $external_account_id External account ID, e.g. `s28zov4fw0cb`.
+     * @param array  $body                The body of the request.
+     * @param array  $options             Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\ExternalAccount A representation of the updated external_account.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/update_account_external_account
+     */
+    public function updateAccountExternalAccount(string $account_id, string $external_account_id, array $body, array $options = []): \Recurly\Resources\ExternalAccount
+    {
+        $path = $this->interpolatePath("/accounts/{account_id}/external_accounts/{external_account_id}", ['account_id' => $account_id, 'external_account_id' => $external_account_id]);
+        return $this->makeRequest('PUT', $path, $body, $options);
+    }
+  
+    /**
+     * Delete an external account for an account
+     *
+     * @param string $account_id          Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
+     * @param string $external_account_id External account ID, e.g. `s28zov4fw0cb`.
+     * @param array  $options             Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\ExternalAccount Successful Delete
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/delete_account_external_account
+     */
+    public function deleteAccountExternalAccount(string $account_id, string $external_account_id, array $options = []): \Recurly\Resources\ExternalAccount
+    {
+        $path = $this->interpolatePath("/accounts/{account_id}/external_accounts/{external_account_id}", ['account_id' => $account_id, 'external_account_id' => $external_account_id]);
+        return $this->makeRequest('DELETE', $path, [], $options);
+    }
+  
+    /**
+     * List the external invoices on an account
+     *
+     * @param string $account_id Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
+     * @param array  $options    Associative array of optional parameters
+     *
+     * Supported optional query string parameters:
+     *
+     * - $options['params']['sort'] (string): Sort field. You *really* only want to sort by `updated_at` in ascending
+     *        order. In descending order updated records will move behind the cursor and could
+     *        prevent some records from being returned.
+     * - $options['params']['limit'] (int): Limit number of records 1-200.
+     * - $options['params']['order'] (string): Sort order.
+     *
+     * @return \Recurly\Pager A list of the the external_invoices on an account.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/list_account_external_invoices
+     */
+    public function listAccountExternalInvoices(string $account_id, array $options = []): \Recurly\Pager
+    {
+        $path = $this->interpolatePath("/accounts/{account_id}/external_invoices", ['account_id' => $account_id]);
+        return new \Recurly\Pager($this, $path, $options);
+    }
+  
+    /**
      * List an account's invoices
      *
      * @param string $account_id Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
@@ -1565,6 +1668,29 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     {
         $path = $this->interpolatePath("/external_subscriptions/{external_subscription_id}", ['external_subscription_id' => $external_subscription_id]);
         return $this->makeRequest('GET', $path, [], $options);
+    }
+  
+    /**
+     * List the external invoices on an external subscription
+     *
+     * @param string $external_subscription_id External subscription id
+     * @param array  $options                  Associative array of optional parameters
+     *
+     * Supported optional query string parameters:
+     *
+     * - $options['params']['sort'] (string): Sort field. You *really* only want to sort by `updated_at` in ascending
+     *        order. In descending order updated records will move behind the cursor and could
+     *        prevent some records from being returned.
+     * - $options['params']['limit'] (int): Limit number of records 1-200.
+     * - $options['params']['order'] (string): Sort order.
+     *
+     * @return \Recurly\Pager A list of the the external_invoices on a site.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/list_external_subscription_external_invoices
+     */
+    public function listExternalSubscriptionExternalInvoices(string $external_subscription_id, array $options = []): \Recurly\Pager
+    {
+        $path = $this->interpolatePath("/external_subscriptions/{external_subscription_id}/external_invoices", ['external_subscription_id' => $external_subscription_id]);
+        return new \Recurly\Pager($this, $path, $options);
     }
   
     /**
@@ -3047,6 +3173,43 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     }
   
     /**
+     * List the external invoices on a site
+     *
+     * @param array $options Associative array of optional parameters
+     *
+     * Supported optional query string parameters:
+     *
+     * - $options['params']['sort'] (string): Sort field. You *really* only want to sort by `updated_at` in ascending
+     *        order. In descending order updated records will move behind the cursor and could
+     *        prevent some records from being returned.
+     * - $options['params']['limit'] (int): Limit number of records 1-200.
+     * - $options['params']['order'] (string): Sort order.
+     *
+     * @return \Recurly\Pager A list of the the external_invoices on a site.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/list_external_invoices
+     */
+    public function listExternalInvoices(array $options = []): \Recurly\Pager
+    {
+        $path = $this->interpolatePath("/external_invoices", []);
+        return new \Recurly\Pager($this, $path, $options);
+    }
+  
+    /**
+     * Fetch an external invoice
+     *
+     * @param string $external_invoice_id External invoice ID, e.g. `e28zov4fw0v2`.
+     * @param array  $options             Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\ExternalInvoice Returns the external invoice
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/show_external_invoice
+     */
+    public function showExternalInvoice(string $external_invoice_id, array $options = []): \Recurly\Resources\ExternalInvoice
+    {
+        $path = $this->interpolatePath("/external_invoices/{external_invoice_id}", ['external_invoice_id' => $external_invoice_id]);
+        return $this->makeRequest('GET', $path, [], $options);
+    }
+  
+    /**
      * List entitlements granted to an account
      *
      * @param string $account_id Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
@@ -3087,6 +3250,81 @@ endpoint to obtain only the newly generated `UniqueCouponCodes`.
     {
         $path = $this->interpolatePath("/accounts/{account_id}/external_subscriptions", ['account_id' => $account_id]);
         return new \Recurly\Pager($this, $path, $options);
+    }
+  
+    /**
+     * List gift cards
+     *
+     * @param array $options Associative array of optional parameters
+     *
+     * @return \Recurly\Pager List of all created gift cards on your site.
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/list_gift_cards
+     */
+    public function listGiftCards(array $options = []): \Recurly\Pager
+    {
+        $path = $this->interpolatePath("/gift_cards", []);
+        return new \Recurly\Pager($this, $path, $options);
+    }
+  
+    /**
+     * Create gift card
+     *
+     * @param array $body    The body of the request.
+     * @param array $options Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\GiftCard Returns the gift card
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/create_gift_card
+     */
+    public function createGiftCard(array $body, array $options = []): \Recurly\Resources\GiftCard
+    {
+        $path = $this->interpolatePath("/gift_cards", []);
+        return $this->makeRequest('POST', $path, $body, $options);
+    }
+  
+    /**
+     * Fetch a gift card
+     *
+     * @param string $gift_card_id Gift Card ID, e.g. `e28zov4fw0v2`.
+     * @param array  $options      Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\GiftCard Gift card details
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/get_gift_card
+     */
+    public function getGiftCard(string $gift_card_id, array $options = []): \Recurly\Resources\GiftCard
+    {
+        $path = $this->interpolatePath("/gift_cards/{gift_card_id}", ['gift_card_id' => $gift_card_id]);
+        return $this->makeRequest('GET', $path, [], $options);
+    }
+  
+    /**
+     * Preview gift card
+     *
+     * @param array $body    The body of the request.
+     * @param array $options Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\GiftCard Returns the gift card
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/preview_gift_card
+     */
+    public function previewGiftCard(array $body, array $options = []): \Recurly\Resources\GiftCard
+    {
+        $path = $this->interpolatePath("/gift_cards/preview", []);
+        return $this->makeRequest('POST', $path, $body, $options);
+    }
+  
+    /**
+     * Redeem gift card
+     *
+     * @param string $redemption_code Gift Card redemption code, e.g., `N1A2T8IRXSCMO40V`.
+     * @param array  $body            The body of the request.
+     * @param array  $options         Associative array of optional parameters
+     *
+     * @return \Recurly\Resources\GiftCard Redeems and returns the gift card
+     * @link   https://developers.recurly.com/api/v2021-02-25#operation/redeem_gift_card
+     */
+    public function redeemGiftCard(string $redemption_code, array $body, array $options = []): \Recurly\Resources\GiftCard
+    {
+        $path = $this->interpolatePath("/gift_cards/{redemption_code}/redeem", ['redemption_code' => $redemption_code]);
+        return $this->makeRequest('POST', $path, $body, $options);
     }
   
 }
